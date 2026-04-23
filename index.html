@@ -9,7 +9,7 @@
 *{margin:0;padding:0;box-sizing:border-box;font-family:system-ui;}
 body{min-height:100vh;display:flex;justify-content:center;align-items:center;color:#eaffea;overflow:hidden;}
 
-.bg{position:fixed;inset:0;background:url('') center/cover no-repeat;transform:scale(1.05);z-index:-3;}
+.bg{position:fixed;inset:0;background:url('33.png') center/cover no-repeat;transform:scale(1.05);z-index:-3;}
 .tint{position:fixed;inset:0;background:linear-gradient(135deg, rgba(0,0,0,0.7), rgba(0,40,20,0.6));z-index:-2;}
 
 .card{
@@ -85,7 +85,10 @@ button:hover{
   <div class="title">نظام البلاغات</div>
   <div class="subtitle">قطاع امن المنشات</div>
 
-  
+  <div class="avatar">
+    <img src="monavatar.gif">
+  </div>
+
   <div class="box">
     <input type="text" placeholder="الاسم أو الكود (اختياري)">
     <textarea placeholder="اكتب البلاغ أو الاقتراح هنا..."></textarea>
@@ -131,7 +134,7 @@ document.querySelector("button").addEventListener("click", async ()=>{
     }]
   };
 
-  await fetch(webhookURL,{
+  await fetch(webhookURL,{ 
     method:"POST",
     headers:{"Content-Type":"application/json"},
     body:JSON.stringify(payload)
