@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-<title> الأقتراحات والشكاوي </title>
+<title>نظام البلاغات - أمن المنشآت</title>
 
 <style>
 *{margin:0;padding:0;box-sizing:border-box;font-family:system-ui;}
@@ -83,7 +83,7 @@ button:hover{
 <div class="card">
 
   <div class="title">نظام البلاغات</div>
-  <div class="subtitle">قطاع امن المنشات</div>
+  <div class="subtitle">FSC Secure Reporting System</div>
 
   <div class="avatar">
     <img src="monavatar.gif">
@@ -98,7 +98,7 @@ button:hover{
 </div>
 
 <script>
-const webhookURL = "https://canary.discord.com/api/webhooks/1496981189872062514/kGsOYMQu1Dc8xRU2nSmWfirrnRkwav26xaH3QDVEnjyYAsr2jkW9w5MJYLWfY3DkghA1";
+const webhookURL = "PUT_WEBHOOK_HERE";
 
 function getTicket(){
   let num = localStorage.getItem("ticket");
@@ -121,20 +121,38 @@ document.querySelector("button").addEventListener("click", async ()=>{
 
   const payload = {
     embeds: [{
+      title: "🚨 FSC SECURITY REPORT",
+      description: "تم تسجيل بلاغ جديد داخل النظام الأمني",
       color: 0x00c853,
 
+      author: {
+        name: "FSC Monitoring System",
+        icon_url: "https://i.imgur.com/4M34hi2.png"
+      },
+
       fields: [
-        { name: "🧾 رقم البلاغ", value: `#${ticket}` },
-        { name: "👤 المرسل", value: name },
-        { name: "📊 الحالة", value: "جديد" },
+        { name: "🧾 رقم البلاغ", value: `#${ticket}`, inline: true },
+        { name: "👤 المرسل", value: name, inline: true },
+        { name: "📊 الحالة", value: "🟢 NEW", inline: true },
+        { name: "📍 التصنيف", value: "اقتراح / بلاغ", inline: true },
+        { name: "🕒 الأولوية", value: "متوسطة", inline: true },
         { name: "📝 التفاصيل", value: "```" + message + "```" }
       ],
+
+      thumbnail: {
+        url: "https://i.imgur.com/8Km9tLL.png"
+      },
+
+      footer: {
+        text: "FSC Secure System • Internal Use Only",
+        icon_url: "https://i.imgur.com/4M34hi2.png"
+      },
 
       timestamp: new Date().toISOString()
     }]
   };
 
-  await fetch(webhookURL,{ 
+  await fetch(webhookURL,{
     method:"POST",
     headers:{"Content-Type":"application/json"},
     body:JSON.stringify(payload)
