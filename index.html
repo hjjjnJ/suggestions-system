@@ -4,6 +4,7 @@
 <meta charset="UTF-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
 <title> الأقتراحات والشكاوي </title>
+
 <style>
 *{margin:0;padding:0;box-sizing:border-box;font-family:system-ui;}
 body{min-height:100vh;display:flex;justify-content:center;align-items:center;color:#eaffea;overflow:hidden;}
@@ -20,22 +21,6 @@ body{min-height:100vh;display:flex;justify-content:center;align-items:center;col
   box-shadow:0 0 60px rgba(0,255,120,0.15);
   padding:35px;
   text-align:center;
-}
-
-/* LOGO */
-.logo{
-  display:flex;
-  justify-content:center;
-  margin-bottom:15px;
-}
-
-.logo img{
-  width:100px;
-  height:100px;
-  object-fit:contain;
-  border-radius:50%;
-  border:3px solid #00e676;
-  box-shadow:0 0 25px rgba(0,255,120,0.35);
 }
 
 .title{font-size:44px;font-weight:800;color:#d2ffd2;text-shadow:0 0 20px rgba(0,255,120,0.3);} 
@@ -97,11 +82,6 @@ button:hover{
 
 <div class="card">
 
-  <!-- LOGO ADDED -->
-  <div class="logo">
-    <img src="logo.png" alt="logo">
-  </div>
-
   <div class="title">نظام البلاغات</div>
   <div class="subtitle">قطاع امن المنشات</div>
 
@@ -154,7 +134,7 @@ document.querySelector("button").addEventListener("click", async ()=>{
     }]
   };
 
-  await fetch(webhookURL,{ 
+  await fetch(webhookURL,{
     method:"POST",
     headers:{"Content-Type":"application/json"},
     body:JSON.stringify(payload)
